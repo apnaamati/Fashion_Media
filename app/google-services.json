@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "516096232065",
+    "firebase_url": "https://fashion-2021-7da05-default-rtdb.firebaseio.com",
+    "project_id": "fashion-2021-7da05",
+    "storage_bucket": "fashion-2021-7da05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:516096232065:android:c894389809d10f83a11b80",
+        "android_client_info": {
+          "package_name": "com.apnaamati.fashion2021"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "516096232065-g4nsoisfnm9rob1qe25ggtnme1d5m9i7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0KUs6DOe-d6z2Oi9K6wsaI10CdcC3fco"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "516096232065-g4nsoisfnm9rob1qe25ggtnme1d5m9i7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

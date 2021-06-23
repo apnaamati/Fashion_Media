@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/bga" />
+
+    <RelativeLayout
+        android:id="@+id/rLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/img"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/btnFav"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+
+        <ImageView
+            android:id="@+id/btnDownload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+
+            android:layout_toEndOf="@+id/btnFav"
+            app:srcCompat="@drawable/ic_baseline_arrow_downward_24" />
+
+        <ImageView
+            android:id="@+id/btnShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_toEndOf="@+id/btnDownload"
+            app:srcCompat="@drawable/ic_baseline_share_24" />
+
+    </RelativeLayout>
+
+    <com.facebook.ads.NativeAdLayout
+        android:id="@+id/native_ad_container"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_below="@+id/rLayout"/>
+
+    <com.google.android.ads.nativetemplates.TemplateView
+    android:id="@+id/my_template"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:gnt_template_type="@layout/gnt_small_template_view"
+        android:layout_below="@+id/rLayout"
+        android:visibility="gone"
+    />
+
+
+</RelativeLayout>
