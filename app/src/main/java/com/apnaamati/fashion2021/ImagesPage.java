@@ -53,7 +53,7 @@ public class ImagesPage extends AppCompatActivity {
 
         AdView adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+        adView.setAdUnitId("ca-app-pub-3490951880662543/8847933822");
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override

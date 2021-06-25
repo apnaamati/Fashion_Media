@@ -4,9 +4,12 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Parcelable;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +39,11 @@ import com.squareup.picasso.Target;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,12 +56,14 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.ViewHo
 
     private LinearLayout adView;
     private NativeAd nativeAd;
+    private ImageView content;
 
     View containerView;
 
     public recyclerAdapter(Context context, ArrayList<image> images) {
         this.context = context;
         this.images = images;
+
     }
 
     @NonNull
@@ -72,7 +81,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.ViewHo
     public void onBindViewHolder(@NonNull @NotNull recyclerAdapter.ViewHolder holder, int position) {
 
         AudienceNetworkAds.initialize(context);
-        nativeAd = new NativeAd(context, "CAROUSEL_IMG_SQUARE_LINK#814661372765928_814665296098869");
+        nativeAd = new NativeAd(context, "814661372765928_814665296098869");
 
 
 
@@ -226,13 +235,15 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.ViewHo
         holder.btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Download The Amazing Fashion App. Which Have more then 1000+ images and videos to download.\n The New Fashion Sale is here! \n url ");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Download The Amazing Fashion App. Which Have more then 1000+ images and videos to download.The New Fashion Sale is here! \n"
+                        + "Hey please check this application " + "https://play.google.com/store/apps/details?id=" +context.getPackageName());
                 sendIntent.setType("text/plain");
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 context.startActivity(shareIntent);
+
+
             }
         });
 

@@ -57,7 +57,8 @@ public class favAdapter extends RecyclerView.Adapter<favAdapter.ViewHolder> {
             public void onClick(View v) {
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Download The Amazing Fashion App. Which Have more then 1000+ images and videos to download.\n The New Fashion Sale is here! \n url ");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Download The Amazing Fashion App. Which Have more then 1000+ images and videos to download.The New Fashion Sale is here! \n"
+                        + "Hey please check this application " + "https://play.google.com/store/apps/details?id=" +context.getPackageName());
                 sendIntent.setType("text/plain");
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 context.startActivity(shareIntent);
@@ -66,7 +67,7 @@ public class favAdapter extends RecyclerView.Adapter<favAdapter.ViewHolder> {
 
         if (position%3 == 0){
             AdLoader.Builder builder = new AdLoader.Builder(
-                    context, "ca-app-pub-3940256099942544/2247696110");
+                    context, "ca-app-pub-3490951880662543/5100260507");
 
             builder.forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
                 @Override

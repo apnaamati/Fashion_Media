@@ -49,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:orientation="vertical"
+        android:layout_marginBottom="4dp"
         android:visibility="gone"
         android:layout_below="@+id/rLayout"/>
 

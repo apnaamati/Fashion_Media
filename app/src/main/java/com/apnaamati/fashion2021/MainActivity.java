@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 //        AdSettings.turnOnSDKDebugger(this);
 //        AdSettings.setTestMode(true);
 
-        adView = new AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50);
+        adView = new AdView(this, "814661372765928_814665022765563", AdSize.BANNER_HEIGHT_50);
         LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
 
 // Add the ad view to your activity layout

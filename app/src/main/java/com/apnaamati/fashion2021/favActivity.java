@@ -14,6 +14,7 @@ import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class favActivity extends AppCompatActivity {
 
@@ -24,11 +25,12 @@ public class favActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fav);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Favourite");
 
 //        AdSettings.turnOnSDKDebugger(this);
 //        AdSettings.setTestMode(true);
 
-        adView = new AdView(this, "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50);
+        adView = new AdView(this, "814661372765928_814665022765563", AdSize.BANNER_HEIGHT_50);
         LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
 
 
