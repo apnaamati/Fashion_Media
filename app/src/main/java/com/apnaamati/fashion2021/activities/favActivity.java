@@ -1,4 +1,4 @@
-package com.apnaamati.fashion2021;
+package com.apnaamati.fashion2021.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.apnaamati.fashion2021.OfflineStorage;
+import com.apnaamati.fashion2021.R;
 import com.apnaamati.fashion2021.adapters.favAdapter;
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AdSize;
@@ -25,7 +27,8 @@ public class favActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fav);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Favourite");
+//        Objects.requireNonNull(getSupportActionBar()).setTitle("Favourite");
+        getSupportActionBar().setTitle("Favourite");
 
 //        AdSettings.turnOnSDKDebugger(this);
 //        AdSettings.setTestMode(true);

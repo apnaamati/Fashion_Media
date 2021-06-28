@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".favActivity">
+    tools:context=".activities.favActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/imageRecyler"
-        android:layout_width="fill_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/image_post"
-        android:layout_marginBottom="12dp"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/banner_container"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/imageRecyler"
+            android:layout_width="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/image_post"
+            android:layout_marginBottom="12dp"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/banner_container"/>
 
     <LinearLayout
         android:id="@+id/banner_container"

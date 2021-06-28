@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,8 @@ import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdLayout;
 import com.facebook.ads.NativeAdListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -56,7 +59,6 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.ViewHo
 
     private LinearLayout adView;
     private NativeAd nativeAd;
-    private ImageView content;
 
     View containerView;
 
@@ -173,7 +175,19 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.ViewHo
 
 
         image image1 =  images.get(position);
-        Picasso.get().load(image1.getUrl()).placeholder(R.drawable.bga).into(holder.imageView);
+
+
+        Picasso.get().load(image1.getUrl()).networkPolicy(NetworkPolicy.OFFLINE).into(holder.imageView, new Callback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Picasso.get().load(image1.getUrl()).placeholder(R.drawable.bga).into(holder.imageView);
+            }
+        });
 
 
 
@@ -190,7 +204,6 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.ViewHo
 
                 ArrayList<String> favImage = offlineStorage.getListString("fav");
                 if (favImage.isEmpty()){
-
                     favImage.add(images.get(position).getUrl());
                     offlineStorage.putListString("fav",favImage);
                     holder.btnFav.setImageResource(R.drawable.ic_baseline_favorite_24);
@@ -240,9 +253,8 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.ViewHo
                 sendIntent.putExtra(Intent.EXTRA_TEXT, "Download The Amazing Fashion App. Which Have more then 1000+ images and videos to download.The New Fashion Sale is here! \n"
                         + "Hey please check this application " + "https://play.google.com/store/apps/details?id=" +context.getPackageName());
                 sendIntent.setType("text/plain");
-                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                Intent shareIntent = Intent.createChooser(sendIntent, "Share with...");
                 context.startActivity(shareIntent);
-
 
             }
         });

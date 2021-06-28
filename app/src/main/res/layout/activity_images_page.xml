@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ImagesPage">
+    tools:context=".activities.ImagesPage">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/imageRecycler"
@@ -23,7 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        ads:adUnitId="ca-app-pub-3490951880662543/8847933822">
     </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>

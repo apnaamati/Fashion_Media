@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".storeOffline"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_logo"
@@ -14,28 +15,32 @@
         android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fashion2021">
-        <activity android:name=".SplashScreen" android:theme="@style/DemoTheme">
+        <activity android:name=".activities.ShotoutPage"></activity>
+        <activity
+            android:name=".activities.SplashScreen"
+            android:theme="@style/DemoTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".favActivity">
+        <activity android:name=".activities.favActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".activities.MainActivity" />
         </activity>
         <activity
             android:name="com.facebook.ads.AudienceNetworkActivity"
             android:hardwareAccelerated="true" />
         <activity
-            android:name=".ImagesPage"
+            android:name=".activities.ImagesPage"
             android:hardwareAccelerated="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".activities.MainActivity" />
         </activity>
-        <activity android:name=".MainActivity"></activity> <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+        <activity android:name=".activities.MainActivity" /> <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3490951880662543~9275363139" />

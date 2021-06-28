@@ -1,4 +1,4 @@
-package com.apnaamati.fashion2021;
+package com.apnaamati.fashion2021.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,8 +9,10 @@ import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.apnaamati.fashion2021.R;
+
 public class SplashScreen extends AppCompatActivity {
-    private static int SPLASH_SCREEN_TIME_OUT=5000;
+    private static int SPLASH_SCREEN_TIME_OUT=2500;
 //    #After completion of 2000 ms, the next activity will get started.
 
     @Override

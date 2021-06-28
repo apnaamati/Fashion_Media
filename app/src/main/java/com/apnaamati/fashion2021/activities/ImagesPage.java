@@ -1,4 +1,4 @@
-package com.apnaamati.fashion2021;
+package com.apnaamati.fashion2021.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.apnaamati.fashion2021.R;
 import com.apnaamati.fashion2021.adapters.recyclerAdapter;
 import com.apnaamati.fashion2021.models.image;
 import com.facebook.ads.AdSettings;
@@ -92,6 +93,7 @@ public class ImagesPage extends AppCompatActivity {
         if (men != null){
             getSupportActionBar().setTitle(men.toString());
             databaseReference = FirebaseDatabase.getInstance().getReference("mens");
+            databaseReference.keepSynced(true);
             images = new ArrayList<>();
             myAdapter = new recyclerAdapter(this,images);
             recyclerView.setAdapter(myAdapter);
@@ -117,6 +119,7 @@ public class ImagesPage extends AppCompatActivity {
         if (women!= null){
             getSupportActionBar().setTitle(women.toString());
             databaseReference = FirebaseDatabase.getInstance().getReference("women");
+            databaseReference.keepSynced(true);
             images = new ArrayList<>();
             myAdapter = new recyclerAdapter(this,images);
             recyclerView.setAdapter(myAdapter);
@@ -141,6 +144,7 @@ public class ImagesPage extends AppCompatActivity {
         if (kids != null){
             getSupportActionBar().setTitle(kids.toString());
             databaseReference = FirebaseDatabase.getInstance().getReference("kids");
+            databaseReference.keepSynced(true);
             images = new ArrayList<>();
             myAdapter = new recyclerAdapter(this,images);
             recyclerView.setAdapter(myAdapter);

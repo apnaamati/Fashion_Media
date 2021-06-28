@@ -22,6 +22,8 @@ import com.google.android.ads.nativetemplates.TemplateView;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -50,7 +52,17 @@ public class favAdapter extends RecyclerView.Adapter<favAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull  favAdapter.ViewHolder holder, int position) {
 
-        Picasso.get().load(favlist.get(position)).placeholder(R.drawable.bga).into(holder.image);
+        Picasso.get().load(favlist.get(position)).networkPolicy(NetworkPolicy.OFFLINE).into(holder.image, new Callback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Picasso.get().load(favlist.get(position)).placeholder(R.drawable.bga).into(holder.image);
+            }
+        });
 
         holder.btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
