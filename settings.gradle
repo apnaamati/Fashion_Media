@@ -1,3 +1,4 @@
 rootProject.name = "Fashion 2021"
 include ':app'
 include ':NativeTemplatesAndroid-1.0.0'
+include ':nativetemplates'

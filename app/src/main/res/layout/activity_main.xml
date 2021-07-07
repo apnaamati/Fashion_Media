@@ -8,7 +8,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/adView">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -35,7 +36,7 @@
                 app:cardCornerRadius="8dp"
                 android:layout_below="@+id/image_slider"
                 android:padding="6dp"
-                app:cardElevation="4dp"
+                app:cardElevation="12dp"
                 app:cardBackgroundColor="@color/black">
 
                 <ImageView
@@ -64,7 +65,7 @@
                 android:layout_margin="16dp"
                 app:cardCornerRadius="8dp"
                 android:padding="6dp"
-                app:cardElevation="4dp"
+                app:cardElevation="12dp"
                 app:cardBackgroundColor="@color/white">
 
                 <ImageView
@@ -93,7 +94,7 @@
                 android:layout_below="@+id/cardWomen"
                 app:cardCornerRadius="8dp"
                 android:padding="6dp"
-                app:cardElevation="4dp"
+                app:cardElevation="12dp"
                 app:cardBackgroundColor="@color/white">
 
                 <ImageView
@@ -113,18 +114,64 @@
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"/>
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardProduct"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_margin="16dp"
+                android:layout_below="@+id/cardKids"
+                app:cardCornerRadius="8dp"
+                android:padding="6dp"
+                app:cardElevation="12dp"
+                app:cardBackgroundColor="@color/white">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/products"
+                    android:scaleType="centerCrop"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PRODUCTS "
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:layout_margin="8dp"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/white"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"/>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardVideo"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_margin="16dp"
+                android:layout_below="@+id/cardProduct"
+                app:cardCornerRadius="8dp"
+                android:padding="6dp"
+                app:cardElevation="12dp"
+                app:cardBackgroundColor="@color/white">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/youtube_banner"
+                    android:scaleType="centerCrop"/>
+            </androidx.cardview.widget.CardView>
         </RelativeLayout>
 
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/banner_container"
-        android:layout_width="match_parent"
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3490951880662543/8847933822">
+    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>

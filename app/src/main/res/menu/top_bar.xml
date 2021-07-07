@@ -8,4 +8,27 @@
         app:showAsAction="always"
         android:icon="@drawable/white_fav"/>
 
+    <item
+        android:id="@+id/FMinsta"
+        android:title="Our Insta"
+        app:showAsAction="always"
+        android:icon="@drawable/instalogo"/>
+
+    <item
+        android:id="@+id/feedBack"
+        android:title="FeedBack"/>
+
+    <item
+        android:id="@+id/joinUs"
+        android:title="Join Us"/>
+
+    <item
+        android:id="@+id/rateUs"
+        android:title="Rate us"/>
+
+    <item
+        android:id="@+id/share"
+        android:title="Share App"/>
+
+
 </menu>

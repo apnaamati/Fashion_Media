@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -22,9 +24,12 @@ import com.google.android.ads.nativetemplates.TemplateView;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
+import com.google.android.gms.ads.nativead.NativeAd;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -52,6 +57,23 @@ public class favAdapter extends RecyclerView.Adapter<favAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull  favAdapter.ViewHolder holder, int position) {
 
+        if(position%4 == 0) {
+            final AdLoader adLoader = new AdLoader.Builder(context, "ca-app-pub-3490951880662543/5100260507")
+                    .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                        @Override
+                        public void onNativeAdLoaded(@NonNull @NotNull NativeAd nativeAd) {
+                            holder.Adtemplate.setNativeAd(nativeAd);
+                            holder.Adtemplate.setVisibility(View.VISIBLE);
+
+                        }
+                    }).build();
+
+            adLoader.loadAd(new AdRequest.Builder().build());
+
+        }else{
+            holder.Adtemplate.setVisibility(View.GONE);
+        }
+
         Picasso.get().load(favlist.get(position)).networkPolicy(NetworkPolicy.OFFLINE).into(holder.image, new Callback() {
             @Override
             public void onSuccess() {
@@ -63,7 +85,45 @@ public class favAdapter extends RecyclerView.Adapter<favAdapter.ViewHolder> {
                 Picasso.get().load(favlist.get(position)).placeholder(R.drawable.bga).into(holder.image);
             }
         });
+        final OfflineStorage offlineStorage = new OfflineStorage(context);
+        if (offlineStorage.getString("fav").contains(favlist.get(position))){
+            holder.btnFav.setImageResource(R.drawable.ic_baseline_favorite_24);
+        }
 
+
+        final boolean[] doubleClick = {false};
+        Handler handler=new Handler();
+
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Runnable r = new Runnable() {
+                    @Override
+                    public void run() {
+
+                        doubleClick[0] = false;
+                    }
+                };
+
+                if (doubleClick[0]) {
+                    favlist.remove(position);
+                    notifyItemRangeChanged(position,favlist.size());
+                    notifyItemRemoved(position);
+
+                    offlineStorage.putListString("fav", favlist);
+                    holder.btnFav.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+                    doubleClick[0] = false;
+
+                }else {
+                    doubleClick[0]=true;
+                    handler.postDelayed(r, 500);
+                }
+
+            }
+
+
+        });
         holder.btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,27 +137,8 @@ public class favAdapter extends RecyclerView.Adapter<favAdapter.ViewHolder> {
             }
         });
 
-        if (position%3 == 0){
-            AdLoader.Builder builder = new AdLoader.Builder(
-                    context, "ca-app-pub-3490951880662543/5100260507");
 
-            builder.forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
-                @Override
-                public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
-                    holder.templateView.setNativeAd(unifiedNativeAd);
-                }
-            });
 
-            final AdLoader adLoader = builder.build();
-            adLoader.loadAd(new AdRequest.Builder().build());
-
-            holder.templateView.setVisibility(View.VISIBLE);
-        }
-
-        final OfflineStorage offlineStorage = new OfflineStorage(context);
-        if (offlineStorage.getString("fav").contains(favlist.get(position))){
-            holder.btnFav.setImageResource(R.drawable.ic_baseline_favorite_24);
-        }
 
         holder.btnFav.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,6 +174,7 @@ public class favAdapter extends RecyclerView.Adapter<favAdapter.ViewHolder> {
                 }
             }
         });
+        holder.btnShop.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -142,17 +184,18 @@ public class favAdapter extends RecyclerView.Adapter<favAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView image,btnFav,btnDownload, btnShare;
-        TemplateView templateView;
+        ImageView image,btnFav,btnDownload, btnShare, like;
+        TemplateView Adtemplate;
+        Button btnShop;
         public ViewHolder(@NonNull  View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.img);
             btnFav = itemView.findViewById(R.id.btnFav);
             btnDownload = itemView.findViewById(R.id.btnDownload);
             btnShare =  itemView.findViewById(R.id.btnShare);
-
-            templateView = itemView.findViewById(R.id.my_template);
-
+            Adtemplate = itemView.findViewById(R.id.my_template);
+            like = itemView.findViewById(R.id.like);
+            btnShop = itemView.findViewById(R.id.btnShop);
         }
     }
 }

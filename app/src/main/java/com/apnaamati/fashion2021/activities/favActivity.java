@@ -12,8 +12,12 @@ import com.apnaamati.fashion2021.OfflineStorage;
 import com.apnaamati.fashion2021.R;
 import com.apnaamati.fashion2021.adapters.favAdapter;
 import com.facebook.ads.AdSettings;
-import com.facebook.ads.AdSize;
-import com.facebook.ads.AdView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -21,7 +25,7 @@ import java.util.Objects;
 public class favActivity extends AppCompatActivity {
 
     ArrayList<String> favlist = new ArrayList<>();
-    private AdView adView;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +34,21 @@ public class favActivity extends AppCompatActivity {
 //        Objects.requireNonNull(getSupportActionBar()).setTitle("Favourite");
         getSupportActionBar().setTitle("Favourite");
 
-//        AdSettings.turnOnSDKDebugger(this);
-//        AdSettings.setTestMode(true);
+        MobileAds.initialize(this);
 
-        adView = new AdView(this, "814661372765928_814665022765563", AdSize.BANNER_HEIGHT_50);
-        LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
+        com.google.android.gms.ads.AdView adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);
+        adView.setAdUnitId("ca-app-pub-3490951880662543/8847933822");
 
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
 
-        adContainer.addView(adView);
-
-        adView.loadAd();
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         OfflineStorage offlineStorage = new OfflineStorage(getApplicationContext());
         favlist = offlineStorage.getListString("fav");
@@ -60,11 +69,4 @@ public class favActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        if (adView != null) {
-            adView.destroy();
-        }
-        super.onDestroy();
-    }
 }
