@@ -6,172 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
-    <ScrollView
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/adView">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:text="Hello World!"
+        android:layout_above="@+id/bottom_nav"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <com.denzcoskun.imageslider.ImageSlider
-                android:id="@+id/image_slider"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                app:iss_auto_cycle="true"
-                android:layout_margin="12dp"
-                app:iss_corner_radius="10"
-                app:iss_period="1500"
-                app:iss_placeholder="@drawable/placeholder"
-                app:iss_error_image="@drawable/error"
-                app:iss_selected_dot="@drawable/default_selected_dot"
-                app:iss_unselected_dot="@drawable/default_unselected_dot"
-                app:iss_delay="0"/>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:id="@+id/bottom_nav"
+        android:background="@color/black"
+        app:itemIconTint="@color/white"
+        android:layout_height="40dp"
+        app:menu="@menu/bottom_nav"
+        android:layout_alignParentBottom="true"/>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardMen"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_margin="16dp"
-                app:cardCornerRadius="8dp"
-                android:layout_below="@+id/image_slider"
-                android:padding="6dp"
-                app:cardElevation="12dp"
-                app:cardBackgroundColor="@color/black">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/mens"
-                    android:scaleType="centerCrop"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="MEN  "
-                    android:textStyle="bold|italic"
-                    android:paddingEnd="10dp"
-                    android:paddingStart="10dp"
-                    android:layout_margin="8dp"
-                    android:textColor="@color/white"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"/>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardWomen"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_below="@+id/cardMen"
-                android:layout_margin="16dp"
-                app:cardCornerRadius="8dp"
-                android:padding="6dp"
-                app:cardElevation="12dp"
-                app:cardBackgroundColor="@color/white">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/women"
-                    android:scaleType="centerCrop"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="WOMEN  "
-                    android:paddingEnd="10dp"
-                    android:paddingStart="10dp"
-                    android:layout_margin="8dp"
-                    android:textColor="@color/white"
-                    android:textStyle="bold|italic"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"/>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardKids"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_margin="16dp"
-                android:layout_below="@+id/cardWomen"
-                app:cardCornerRadius="8dp"
-                android:padding="6dp"
-                app:cardElevation="12dp"
-                app:cardBackgroundColor="@color/white">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/kids"
-                    android:scaleType="centerCrop"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="KIDS  "
-                    android:paddingEnd="10dp"
-                    android:paddingStart="10dp"
-                    android:layout_margin="8dp"
-                    android:textStyle="bold|italic"
-                    android:textColor="@color/white"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"/>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardProduct"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_margin="16dp"
-                android:layout_below="@+id/cardKids"
-                app:cardCornerRadius="8dp"
-                android:padding="6dp"
-                app:cardElevation="12dp"
-                app:cardBackgroundColor="@color/white">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/products"
-                    android:scaleType="centerCrop"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PRODUCTS "
-                    android:paddingEnd="10dp"
-                    android:paddingStart="10dp"
-                    android:layout_margin="8dp"
-                    android:textStyle="bold|italic"
-                    android:textColor="@color/white"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"/>
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardVideo"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_margin="16dp"
-                android:layout_below="@+id/cardProduct"
-                app:cardCornerRadius="8dp"
-                android:padding="6dp"
-                app:cardElevation="12dp"
-                app:cardBackgroundColor="@color/white">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/youtube_banner"
-                    android:scaleType="centerCrop"/>
-            </androidx.cardview.widget.CardView>
-        </RelativeLayout>
-
-    </ScrollView>
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3490951880662543/8847933822">
-    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>
